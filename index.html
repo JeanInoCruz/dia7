@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script>
+        function guardarDatos() {
+            const data = {
+                nombre: 'Juan',
+                email: 'juan@example.com'
+            };
+
+            fetch('/save', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(data)
+            })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Hubo un problema con la solicitud POST.');
+                }
+                return response.text();
+            })
+            .then(data => {
+                console.log(data);
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+        }
+    </script>
+  </head>
+  <body>
+    <h1>Bienvenido a mi API</h1>
+    <p>
+      Lorem ipsum dolor sit, amet consectetur adipisicing elit. Fuga error
+      inventore quaerat expedita officia provident asperiores, nisi veniam alias
+      possimus totam tenetur saepe omnis illo commodi est nulla ipsa quia.
+    </p>
+    <h1>Guardar Datos</h1>
+    <button onclick="guardarDatos()">Guardar Datos</button>
+  </body>
+</html>
